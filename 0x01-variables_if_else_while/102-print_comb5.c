@@ -16,7 +16,7 @@ int main(void)
 	{
 		for (third = '0'; third <= '9'; third++)
 		{
-		 	for (second = fourth; second <= '9'; second++)
+			for (second = fourth; second <= '9'; second++)
 			{
 				for (first = third + 1; first <= '9'; first++)
 				{
@@ -26,8 +26,7 @@ int main(void)
 					putchar(second);
 					putchar(first);
 
-					if (!((fourth == '9' && third == '8') &&
-					      (second == '9' && first == '9')))
+					if (!(fourth == '9' && third == '8' && second == '9' && first == '9'))
 					{
 						putchar(',');
 						putchar(' ');
