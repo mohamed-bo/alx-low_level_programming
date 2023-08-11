@@ -11,16 +11,18 @@ int main(void)
 	int third;
 	int second;
 	int first;
-	int temp = '0';
+	int temp;
+
 	for (fourth = '0'; fourth <= '9'; fourth++)
 	{
-		for (third = '0'; third <= '9'; third++)
+		for (third = '0'; third <= '8'; third++)
 		{
 			for (second = fourth; second <= '9'; second++)
 			{
 				for (first = '0'; first <= '9'; first++)
 				{
-					if (third != temp){
+					if (third != temp)
+					{
 						first = third + 1;
 						temp = third;
 					}
