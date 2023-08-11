@@ -11,7 +11,7 @@ int main(void)
 	int third;
 	int second;
 	int first;
-
+	int temp = '0';
 	for (fourth = '0'; fourth <= '9'; fourth++)
 	{
 		for (third = '0'; third <= '9'; third++)
@@ -20,6 +20,10 @@ int main(void)
 			{
 				for (first = '0'; first <= '9'; first++)
 				{
+					if (third != temp){
+						first = third + 1;
+						temp = third;
+					}
 					putchar(fourth);
 					putchar(third);
 					putchar(' ');
@@ -32,7 +36,6 @@ int main(void)
 						putchar(' ');
 					}
 				}
-				first = '0';
 			}
 		}
 	}
