@@ -15,17 +15,19 @@ int main(void)
 
 	for (fourth = '0'; fourth <= '9'; fourth++)
 	{
-		for (third = '0'; third <= '8'; third++)
+		for (third = '0'; third <= '9'; third++)
 		{
 			for (second = fourth; second <= '9'; second++)
 			{
-				for (first = '0'; first <= '9'; first++)
+				if (third != temp)
 				{
-					if (third != temp)
-					{
-						first = third + 1;
-						temp = third;
-					}
+					first = third + 1;
+					temp = third;
+				}
+				else
+					first = '0';
+				for (; first <= '9'; first++)
+				{
 					putchar(fourth);
 					putchar(third);
 					putchar(' ');
