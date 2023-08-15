@@ -12,7 +12,7 @@ int main(void)
 	long f = 1;
 	long s = 1;
 
-	while (counter < 50)
+	while (counter < 49)
 	{
 		printf("%ld, ", i);
 		f = s;
@@ -20,6 +20,7 @@ int main(void)
 		i = s + f;
 		counter++;
 	}
+	printf("%ld", i);
 	printf("\n");
 
 	return (0);
