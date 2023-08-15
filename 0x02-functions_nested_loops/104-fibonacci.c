@@ -11,7 +11,6 @@ int main(void)
 	unsigned long s = 1;
 	unsigned long sum = 0;
 	int counter;
-	
 	long oversum, f_part1, f_part2, s_part1, s_part2, sum_part1, sum_part2;
 
 	printf("1");
