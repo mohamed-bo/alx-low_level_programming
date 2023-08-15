@@ -7,8 +7,8 @@
 
 int main(void)
 {
-	int sum_of_evens = 0;
-	int i = 1;
+	long sum_of_evens = 0;
+	long i = 1;
 	long f = 1;
 	long s = 1;
 
@@ -20,7 +20,7 @@ int main(void)
 		if ((i <= 4000000) && (i % 2 == 0))
 			sum_of_evens += i;
 	}
-	printf("%d\n", sum_of_evens);
+	printf("%ld\n", sum_of_evens);
 
 	return (0);
 }
