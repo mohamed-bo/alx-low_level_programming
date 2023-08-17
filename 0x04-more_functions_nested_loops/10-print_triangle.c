@@ -14,12 +14,12 @@ void print_triangle(int size)
 	if (size <= 0)
 		_putchar('\n');
 
-	for (lines = 0; lines < size; lines++)
+	for (lines = 1; lines <= size; lines++)
 	{
-		for (columns = 0; columns < ((size - lines) - 1); columns++)
+		for (columns = 1; columns <= (size - lines); columns++)
 			_putchar(' ');
 
-		for (diaz = 0; diaz < (lines + 1); diaz++)
+		for (diaz = 1; diaz <= lines; diaz++)
 			_putchar('#');
 
 		_putchar('\n');
