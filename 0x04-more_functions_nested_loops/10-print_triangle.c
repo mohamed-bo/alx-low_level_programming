@@ -16,10 +16,10 @@ void print_triangle(int size)
 
 	for (lines = 0; lines < size; lines++)
 	{
-		for (columns = 0; columns < (size - lines); columns++)
+		for (columns = 0; columns < ((size - lines) - 1); columns++)
 			_putchar(' ');
 
-		for (diaz = 0; diaz < lines; diaz++)
+		for (diaz = 0; diaz < (lines + 1); diaz++)
 			_putchar('#');
 
 		_putchar('\n');
