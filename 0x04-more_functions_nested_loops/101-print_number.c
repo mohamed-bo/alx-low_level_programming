@@ -7,7 +7,7 @@
 
 void print_number(int n)
 {
-	int tens, digit;
+	unsigned int tens, digit;
 	unsigned int positive = n;
 	unsigned int biggerTens = 1;
 
@@ -22,15 +22,18 @@ void print_number(int n)
 		}
 
 		while (biggerTens <= positive)
-			biggerTens = biggerTens * 10;
+		{
+			biggerTens =biggerTens * 10;
+		}
+		
 		tens = biggerTens / 10;
 
 		while (tens >= 1)
 		{
 			digit = positive / tens;
-			_putchar(digit + '0');
 			positive = (positive - (tens * digit));
 			tens = tens / 10;
+			_putchar(digit + '0');
 		}
 	}
 }
