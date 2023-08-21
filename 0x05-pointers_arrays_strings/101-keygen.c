@@ -13,11 +13,12 @@ int main(void)
 	int sumOfC;
 
 	srand(time(0));
-	while (sumOfC <= 2645)
+	c = rand() % 128;
+	while (sumOfC <= 2645 && c != 0)
 	{
-		c = rand() % 128;
 		sumOfC += c;
 		putchar(c);
+		c = rand() % 128;
 	}
 	putchar(2772 - sumOfC);
 	return (0);
