@@ -14,7 +14,7 @@ int main(void)
 
 	srand(time(0));
 	c = rand() % 96 + 32;
-	while (checksum <= 2645 && c != 0)
+	while (checksum <= 2645)
 	{
 		checksum += c;
 		putchar(c);
