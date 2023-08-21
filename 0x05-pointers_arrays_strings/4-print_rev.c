@@ -17,13 +17,19 @@ _putchar(s[i]);
 _putchar('\n');
 }
 
+/**
+ *_strlen -  function that returns the length of a string.
+ * @s: string value
+ *Return: returns the length of a string.
+ */
+
 int _strlen(char *s)
 {
-int i;
+	int i;
 
-for (i = 0; s[i] != '\0'; i++)
-{
-}
+	for (i = 0; s[i] != '\0'; i++)
+	{
+	}
 
-return (i);
+	return (i);
 }
