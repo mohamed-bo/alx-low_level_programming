@@ -18,7 +18,7 @@ int main(void)
 	{
 		sumOfC += c;
 		putchar(c);
-		c = rand() % 128;
+		c = rand() % 96 + 32;
 	}
 	putchar(2772 - sumOfC);
 	return (0);
