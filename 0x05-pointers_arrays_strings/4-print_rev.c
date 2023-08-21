@@ -19,11 +19,11 @@ _putchar('\n');
 
 int _strlen(char *s)
 {
-int i, inc;
+int i;
 
 for (i = 0; s[i] != '\0'; i++)
 {
 }
 
-return (i-1);
+return (i);
 }
