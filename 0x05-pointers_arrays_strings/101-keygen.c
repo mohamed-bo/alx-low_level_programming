@@ -10,15 +10,15 @@
 int main(void)
 {
 	char c;
-	int x;
+	int sumOfC;
 
 	srand(time(0));
-	while (x <= 2645)
+	while (sumOfC <= 2645)
 	{
 		c = rand() % 128;
-		x += c;
+		sumOfC += c;
 		putchar(c);
 	}
-	putchar(2772 - x);
+	putchar(2772 - sumOfC);
 	return (0);
 }
