@@ -10,16 +10,16 @@
 int main(void)
 {
 	char c;
-	int sumOfC;
+	int checksum;
 
 	srand(time(0));
-	c = rand() % 128;
-	while (sumOfC <= 2645 && c != 0)
+	c = rand() % 96 + 32;
+	while (checksum <= 2645 && c != 0)
 	{
-		sumOfC += c;
+		checksum += c;
 		putchar(c);
 		c = rand() % 96 + 32;
 	}
-	putchar(2772 - sumOfC);
+	putchar(2772 - checksum);
 	return (0);
 }
