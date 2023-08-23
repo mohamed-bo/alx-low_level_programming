@@ -21,16 +21,15 @@ void print_buffer(char *b, int size)
 		for (j = i; j <= i + 8; j += 2)
 		{
 			if ((j < size) && ((j + 1) < size))
-				printf("%02x%02x: ", b[j], b[j + 1]);
+				printf("%02x%02x ", b[j], b[j + 1]);
 			else
 			{
 				j++;
-				while (j <= i + 10)
+				while (j <= i + 11)
 				{
-					printf(" ");
+					printf("  ");
 					j++;
 				}
-				printf(" ");
 			}
 		}
 		for (j = i; j < i + 9 && j < size; j++)
