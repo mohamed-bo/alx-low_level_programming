@@ -2,7 +2,7 @@
 
 /**
 * rot13 -  encodes a string using rot13.
-* @str: the string in ascci
+* @s: the string in ascci
 *Return: the encoded string
 */
 
