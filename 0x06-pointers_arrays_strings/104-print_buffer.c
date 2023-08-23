@@ -10,7 +10,7 @@ void print_buffer(char *b, int size)
 
 	if (size <= 0)
 	{
-		printf("\n");
+		putchar('\n');
 		return;
 	}
 
@@ -35,11 +35,11 @@ void print_buffer(char *b, int size)
 		for (j = i; j < i + 10 && j < size; j++)
 		{
 			if (b[j] >= 32 && b[j] <= 126)
-				printf("%c", b[j]);
+				putchar(b[j]);
 			else
-				printf(".");
+				putchar('.');
 		}
-		printf("\n");
+		putchar('\n');
 		i = i + 10;
 	}
 }
