@@ -4,7 +4,7 @@
  *_strcat - appends the src string to the dest string
  *@dest: main String that we append to
  *@src: String to appended to dest
- *Returns a pointer to the resulting string dest
+ *Return: a pointer to the resulting string dest
  */
 
 char *_strcat(char *dest, char *src)
