@@ -32,7 +32,7 @@ void print_buffer(char *b, int size)
 		for (k = 0; k < j; k++)
 		{
 			c = *(b + i + k);
-			if (c < 32 || c > 132)
+			if (c < 32 || c > 128)
 				c = '.';
 			printf("%c", c);
 		}
