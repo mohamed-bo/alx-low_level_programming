@@ -16,7 +16,7 @@ char *leet(char *s)
 
 	for (j = 0; s[j] != '\0'; j++)
 	{
-		for (i = 0; i<11; i++)
+		for (i = 0; i < 11; i++)
 		{
 			if (s[j] == letters[i])
 				s[j] = numbers[i];
