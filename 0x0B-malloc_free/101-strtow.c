@@ -86,9 +86,9 @@ char **strtow(char *str)
 	size = _strlen(str);
 	for (i = 0; i < size; i++)
 	{
-		if (str[i] != ' ' && str[i + 1] != ' ')
+		if (str[i] != ' ' && str[i + 1] != ' ' && str[i + 1] != '\0')
 			continue;
-		else if (str[i] != ' ' && (str[i + 1] == ' ' || !str[i + 1]))
+		else if (str[i] != ' ' && (str[i + 1] == ' ' || str[i + 1] == '\0'))
 		{
 			end = i + 1;
 			words[arrayIndex] = duplicate_word(str, start, end);
