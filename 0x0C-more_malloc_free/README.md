@@ -19,4 +19,5 @@
 | 1. string_nconcat | [1-string_nconcat.c](./1-string_nconcat.c) |
 | 2. _calloc | [2-calloc.c](./2-calloc.c) |
 | 3. array_range | [3-array_range.c](./3-array_range.c) |
-
+| 4. _realloc | [100-realloc.c](./100-realloc.c) |
+| 5. We must accept finite disappointment, but never lose infinite hope | [101-mul.c](./101-mul.c) |
