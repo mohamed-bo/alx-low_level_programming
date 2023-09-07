@@ -1,5 +1,8 @@
 #include "main.h"
-
+#include <stdlib.h>
+#ifndef min
+#define min(a,b) (((a) < (b)) ? (a) : (b))
+#endif
 
 /**
 * _realloc -  reallocates a memory block using malloc and free
