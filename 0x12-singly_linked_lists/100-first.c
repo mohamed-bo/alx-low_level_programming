@@ -2,7 +2,7 @@
 
 void __attribute__((constructor)) cnstr(void);
 /**
- * premain - execute before the main function is executed.
+ * cnstr- execute before the main function is executed.
  */
 void cnstr(void)
 {
