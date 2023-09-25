@@ -2,7 +2,7 @@
 
 /**
  * sum_listint -the sum of all the data (n) of a listint_t linked list.
- * @h: head of list.
+ * @head: head of list.
  * Return: the sum of all the data (n) of a listint_t linked list.
  */
 

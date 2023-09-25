@@ -20,7 +20,8 @@ size_t tortoiseAndHare(const listint_t *head)
 	{
 		tortoise = tortoise->next;
 		hare = hare->next->next;
-		if (tortoise == hare) break;
+		if (tortoise == hare)
+			break;
 	}
 	if (tortoise == hare)
 	{
@@ -45,7 +46,7 @@ size_t tortoiseAndHare(const listint_t *head)
 /**
  * print_listint_safe - Print (safe version) list.
  * @head: head of list
- * Returns: the number of nodes in the list
+ * Return: the number of nodes in the list
  */
 
 size_t print_listint_safe(const listint_t *head)

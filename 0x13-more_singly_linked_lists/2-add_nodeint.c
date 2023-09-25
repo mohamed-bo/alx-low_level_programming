@@ -2,7 +2,7 @@
 
 /**
  * add_nodeint - adds a new node at the beginning of a listint_t list.
- * @h: head of list.
+ * @head: head of list.
  * @n: integer of new node
  * Return: the address of the new element, or NULL if it failed
  */

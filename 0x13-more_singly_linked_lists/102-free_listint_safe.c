@@ -1,7 +1,7 @@
 #include "lists.h"
 
 /**
- * tortoiseAndHare - Tortoise and Hare Algorithm find loop
+ * tortoiseAndHaret - Tortoise and Hare Algorithm find loop
  * @head: head of list
  * Return: the real len of there is loop, else 0
  */
@@ -19,7 +19,8 @@ size_t tortoiseAndHaret(const listint_t *head)
 	{
 		tortoise = tortoise->next;
 		hare = hare->next->next;
-		if (tortoise == hare) break;
+		if (tortoise == hare)
+			break;
 	}
 	if (tortoise == hare)
 	{
@@ -43,14 +44,14 @@ size_t tortoiseAndHaret(const listint_t *head)
 
 /**
  * free_listint_safe - Free (safe version) a listint_t
- * @head: head of list
+ * @h: head of list
  * Return: the size of the list that was free’d
  */
 size_t free_listint_safe(listint_t **h)
 {
 	listint_t *temp;
 	size_t len, i;
-	
+
 	len = tortoiseAndHaret(*h);
 	if (!len)
 	{
