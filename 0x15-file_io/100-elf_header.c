@@ -8,43 +8,6 @@
 #define UNUSED(x) (void)(x)
 
 /**
- * safeClose - safeClose
- * @file: The file
- *
- * Description: If the file
- */
-
-void safeClose(int file)
-{
-	if (close(file) == -1)
-	{
-		dprintf(STDERR_FILENO,
-			"Error: Can't close fd %d\n", file);
-		exit(98);
-	}
-}
-
-/**
- * isElf - Checks if a file is ELF
- * @e_ident: array of the ELF magic numbers.
- *
- * Description: If the file
- */
-
-void isElf(unsigned char *e_ident)
-{
-	if (e_ident[EI_MAG0] != ELFMAG0 ||
-	    e_ident[EI_MAG1] != ELFMAG1 ||
-	    e_ident[EI_MAG2] != ELFMAG2 ||
-	    e_ident[EI_MAG3] != ELFMAG3)
-	{
-		dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
-		exit(98);
-	}
-
-}
-
-/**
  * print_type - print type of an ELF
  * @e_type: elf Type
  * @e_ident: elf classes
@@ -56,7 +19,6 @@ void print_type(unsigned int e_type, unsigned char *e_ident)
 		e_type >>= 8;
 
 	printf("  Type:                              ");
-
 	switch (e_type)
 	{
 	case ET_DYN:
@@ -103,7 +65,7 @@ void print_entry(unsigned long int e_entry, unsigned char *e_ident)
 }
 
 /**
- * print_osabi - prints OS ABI
+ * printOsAbi - prints OS ABI
  * @e_ident: ELF version.
  */
 void printOsAbi(unsigned char *e_ident)
@@ -165,7 +127,6 @@ void printElfInformation(Elf64_Ehdr *header)
 	for (i = 0; i < EI_NIDENT; i++)
 	{
 		printf("%02x", header->e_ident[i]);
-
 		if (i == EI_NIDENT - 1)
 			printf("\n");
 		else
@@ -177,7 +138,6 @@ void printElfInformation(Elf64_Ehdr *header)
 		header->e_ident[EI_DATA] == ELFDATA2LSB ?
 		"2's complement, little endian" :
 		"2's complement, big endian");
-	
 	printf("  Version:                           %d%s",
 		header->e_ident[EI_VERSION], s);
 	printOsAbi(header->e_ident);
@@ -211,7 +171,8 @@ int main(int argc, char *argv[])
 	header = malloc(sizeof(Elf64_Ehdr));
 	if (header == NULL)
 	{
-		safeClose(file);
+		if (close(file) == -1)
+			dprintf(STDERR_FILENO, "Error: Can't close %d\n", file), exit(98);
 		dprintf(STDERR_FILENO, "Error: Can't malloc %s\n", argv[1]);
 		exit(98);
 	}
@@ -220,8 +181,16 @@ int main(int argc, char *argv[])
 		dprintf(STDERR_FILENO, "Error: Can't read from %s\n", argv[1]);
 		exit(98);
 	}
-	isElf(header->e_ident);
+	if (header->e_ident[EI_MAG0] != ELFMAG0 ||
+	    header->e_ident[EI_MAG1] != ELFMAG1 ||
+	    header->e_ident[EI_MAG2] != ELFMAG2 ||
+	    header->e_ident[EI_MAG3] != ELFMAG3)
+	{
+		dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
+		exit(98);
+	}
 	printElfInformation(header);
-	safeClose(file);
+		if (close(file) == -1)
+			dprintf(STDERR_FILENO, "Error: Can't close %d\n", file), exit(98);
 	return (0);
 }
