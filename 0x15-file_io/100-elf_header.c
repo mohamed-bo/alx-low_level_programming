@@ -10,6 +10,8 @@
 /**
  * safeClose - safeClose
  * @file: The file
+ *
+ * Description: If the file
  */
 
 void safeClose(int file)
@@ -25,6 +27,8 @@ void safeClose(int file)
 /**
  * isElf - Checks if a file is ELF
  * @e_ident: array of the ELF magic numbers.
+ *
+ * Description: If the file
  */
 
 void isElf(unsigned char *e_ident)
@@ -43,6 +47,8 @@ void isElf(unsigned char *e_ident)
 /**
  * printElfInformation -print Elf file Information
  * @header: pointer to the header of elf file
+ *
+ * Description: If the file
  */
 
 void printElfInformation(Elf64_Ehdr *header)
