@@ -158,11 +158,19 @@ void printElfInformation(Elf64_Ehdr *header)
 {
 	char *s = header->e_ident[EI_VERSION] == EV_CURRENT ? " (current)\n" :
 	"\n";
+	int i;
 
 	printf("ELF Header:\n");
-	printf("  Magic:   %02x %02x %02x %02x\n",
-	       header->e_ident[EI_MAG0], header->e_ident[EI_MAG1],
-	       header->e_ident[EI_MAG2], header->e_ident[EI_MAG3]);
+	printf("  Magic:   ");
+	for (i = 0; i < EI_NIDENT; i++)
+	{
+		printf("%02x", header->e_ident[i]);
+
+		if (i == EI_NIDENT - 1)
+			printf("\n");
+		else
+			printf(" ");
+	}
 	printf("  Class:                             %s\n",
 		header->e_ident[EI_CLASS] == ELFCLASS32 ? "ELF32" : "ELF64");
 	printf("  Data:                              %s\n",
