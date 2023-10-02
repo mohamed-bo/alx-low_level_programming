@@ -45,6 +45,109 @@ void isElf(unsigned char *e_ident)
 }
 
 /**
+ * print_type - print type of an ELF
+ * @e_type: elf Type
+ * @e_ident: elf classes
+ */
+
+void print_type(unsigned int e_type, unsigned char *e_ident)
+{
+	if (e_ident[EI_DATA] == ELFDATA2MSB)
+		e_type >>= 8;
+
+	printf("  Type:                              ");
+
+	switch (e_type)
+	{
+	case ET_DYN:
+		printf("DYN (Shared object file)\n");
+		break;
+	case ET_NONE:
+		printf("NONE (None)\n");
+		break;
+	case ET_CORE:
+		printf("CORE (Core file)\n");
+		break;
+	case ET_REL:
+		printf("REL (Relocatable file)\n");
+		break;
+	case ET_EXEC:
+		printf("EXEC (Executable file)\n");
+		break;
+	default:
+		printf("<unknown: %x>\n", e_type);
+	}
+}
+
+/**
+ * print_entry - prints the entry point of ELF file
+ * @e_entry: elf entry
+ * @e_ident: elf classes
+ */
+void print_entry(unsigned long int e_entry, unsigned char *e_ident)
+{
+	printf("  Entry point address:               ");
+
+	if (e_ident[EI_DATA] == ELFDATA2MSB)
+	{
+		e_entry = ((e_entry << 8) & 0xFF00FF00) |
+			  ((e_entry >> 8) & 0xFF00FF);
+		e_entry = (e_entry << 16) | (e_entry >> 16);
+	}
+
+	if (e_ident[EI_CLASS] == ELFCLASS32)
+		printf("%#x\n", (unsigned int)e_entry);
+
+	else
+		printf("%#lx\n", e_entry);
+}
+
+/**
+ * print_osabi - prints OS ABI
+ * @e_ident: ELF version.
+ */
+void printOsAbi(unsigned char *e_ident)
+{
+	printf("  OS/ABI:                            ");
+
+	switch (e_ident[EI_OSABI])
+	{
+	case ELFOSABI_LINUX:
+		printf("UNIX - Linux\n");
+		break;
+	case ELFOSABI_SOLARIS:
+		printf("UNIX - Solaris\n");
+		break;
+	case ELFOSABI_HPUX:
+		printf("UNIX - HP-UX\n");
+		break;
+	case ELFOSABI_NETBSD:
+		printf("UNIX - NetBSD\n");
+		break;
+	case ELFOSABI_IRIX:
+		printf("UNIX - IRIX\n");
+		break;
+	case ELFOSABI_FREEBSD:
+		printf("UNIX - FreeBSD\n");
+		break;
+	case ELFOSABI_TRU64:
+		printf("UNIX - TRU64\n");
+		break;
+	case ELFOSABI_ARM:
+		printf("ARM\n");
+		break;
+	case ELFOSABI_STANDALONE:
+		printf("Standalone App\n");
+		break;
+	case ELFOSABI_NONE:
+		printf("UNIX - System V\n");
+		break;
+	default:
+		printf("<unknown: %x>\n", e_ident[EI_OSABI]);
+	}
+}
+
+/**
  * printElfInformation -print Elf file Information
  * @header: pointer to the header of elf file
  *
@@ -53,6 +156,9 @@ void isElf(unsigned char *e_ident)
 
 void printElfInformation(Elf64_Ehdr *header)
 {
+	char *s = header->e_ident[EI_VERSION] == EV_CURRENT ? " (current)\n" :
+	"\n";
+
 	printf("ELF Header:\n");
 	printf("  Magic:   %02x %02x %02x %02x\n",
 	       header->e_ident[EI_MAG0], header->e_ident[EI_MAG1],
@@ -63,31 +169,14 @@ void printElfInformation(Elf64_Ehdr *header)
 		header->e_ident[EI_DATA] == ELFDATA2LSB ?
 		"2's complement, little endian" :
 		"2's complement, big endian");
-	printf("  Version:                           %d (current)\n",
-		header->e_ident[EI_VERSION]);
-	printf("  OS/ABI:                            %s\n",
-		header->e_ident[EI_OSABI] == ELFOSABI_SYSV ? "UNIX - System V" :
-		"UNIX - System V");
+	
+	printf("  Version:                           %d%s",
+		header->e_ident[EI_VERSION], s);
+	printOsAbi(header->e_ident);
 	printf("  ABI Version:                       %d\n",
 		header->e_ident[EI_ABIVERSION]);
-	printf("  Type:                              %s\n",
-		header->e_type == ET_EXEC ? "EXEC (Executable file)" :
-		"EXEC (Executable file)");
-	printf("  Entry point address:               0x%lx (bytes into file)\n",
-		header->e_entry);
-	printf("  Start of program headers:          %lu (bytes into file)\n",
-		header->e_phoff);
-	printf("  Start of section headers:          %lu (bytes into file)\n",
-		header->e_shoff);
-	printf("  Flags:                             0x%x\n", header->e_flags);
-	printf("  Size of this header:               %d (bytes)\n", header->e_ehsize);
-	printf("  Size of program headers:           %d (bytes)\n",
-		header->e_phentsize);
-	printf("  Number of program headers:         %d\n", header->e_phnum);
-	printf("  Size of section headers:           %d (bytes)\n",
-		header->e_shentsize);
-	printf("  Number of section headers:         %d\n", header->e_shnum);
-	printf("  Section header string table index: %d\n", header->e_shstrndx);
+	print_type(header->e_type, header->e_ident);
+	print_entry(header->e_entry, header->e_ident);
 }
 
 /**
@@ -107,7 +196,7 @@ int main(int argc, char *argv[])
 	file = open(argv[1], O_RDONLY);
 	if (file == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't open file %s\n", argv[1]);
+		dprintf(STDERR_FILENO, "Error: '%s': No such file\n", argv[1]);
 		exit(98);
 	}
 
